@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:prova_topicos/database/database.dart';
-import 'package:prova_topicos/screens/tela_login.dart';
 
 class TelaCadastro extends StatefulWidget {
   const TelaCadastro({super.key});

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TelaHome extends StatelessWidget{
-  final String email;
+  final String nome;
 
-  const TelaHome({super.key, required this.email});
+  const TelaHome({super.key, required this.nome});
 
   void logout(BuildContext context){
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -14,7 +14,7 @@ class TelaHome extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         title: const Text('Bem-Vindo'),
-        backgroundColor: Colors.deepOrangeAccent[100],
+        backgroundColor: Color.fromARGB(255, 213, 213, 213),
         actions: [
           IconButton(
             onPressed: () => logout(context), 
@@ -26,10 +26,10 @@ class TelaHome extends StatelessWidget{
         children: [
           Align(
             alignment: const Alignment(0.0, -0.6),
-            child: Text('Seja Bem-Vindo! \n $email',
+            child: Text('Seja Bem-Vindo! \n $nome',
             style: TextStyle(
               fontSize: 30,
-              color: Colors.amber[100],
+              color: const Color.fromARGB(255, 0, 0, 0),
               shadows: [
                 Shadow(
                   color: Colors.black.withOpacity(0.2),

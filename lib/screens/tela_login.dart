@@ -25,7 +25,7 @@ class LoginScreenState extends State<TelaLogin> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => TelaHome(email: emailController.text),
+            builder: (context) => TelaHome(nome: user['nome'] ),
           ),
         );
       } else {
@@ -37,12 +37,7 @@ class LoginScreenState extends State<TelaLogin> {
       }
     }
   }
-
-  void LimpaTela() {
-    emailController.clear();
-    passwordController.clear();
-  }
-
+  
   void PrintAllUser() async {
     final users = await databaseHelper.getAllUsers();
     for (var user in users) {
@@ -62,9 +57,12 @@ class LoginScreenState extends State<TelaLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[50],
       appBar: AppBar(
-        title: const Text('Tela de Login'),
-        backgroundColor: Colors.blueGrey[100],
+        title: const Text('Tela de Login', 
+            style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: const Color.fromARGB(255, 0, 161, 230),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -78,7 +76,7 @@ class LoginScreenState extends State<TelaLogin> {
                   children: <Widget>[
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.amber[50],
+                        color: Color.fromARGB(255, 255, 255, 255),
                         borderRadius: BorderRadius.circular(10.0),
                         boxShadow: [
                           BoxShadow(
@@ -112,7 +110,7 @@ class LoginScreenState extends State<TelaLogin> {
                     const SizedBox(height: 10),
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.amber[50],
+                        color: const Color.fromARGB(255, 255, 255, 255),
                         borderRadius: BorderRadius.circular(10.0),
                         boxShadow: [
                           BoxShadow(
@@ -142,23 +140,33 @@ class LoginScreenState extends State<TelaLogin> {
                         },
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    Row(
+                    const SizedBox(height: 20),
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         ElevatedButton(
-                          onPressed: navigateToCadastro, // Navega para a tela de cadastro
-                          child: const Text('Cadastrar'),
-                        ),
-                        const SizedBox(width: 10),
-                        ElevatedButton(
                           onPressed: login,
-                          child: const Text('Login'),
+                          
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(500, 50),
+                            backgroundColor: Colors.blue,
+                            shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(8)), // Define o borderRadius como zero
+                              ),
+                          ),
+                          child: const Text('Entrar', 
+                            style: TextStyle(color: Colors.white),
+                            ),
                         ),
-                        const SizedBox(width: 10),
-                        ElevatedButton(
-                          onPressed: LimpaTela,
-                          child: const Text('Limpar'),
+                        const SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: navigateToCadastro, // Navega para a tela de cadastro
+                          child: const Text('Não Tem Uma Conta? Cadastre-se', 
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontSize: 13, 
+                            ),
+                          ),
                         ),
                       ],
                     ),
