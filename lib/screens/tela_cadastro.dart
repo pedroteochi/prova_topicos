@@ -40,9 +40,11 @@ class _TelaCadastroState extends State<TelaCadastro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[50],
       appBar: AppBar(
-        title: const Text('Tela de Cadastro'),
-        backgroundColor: Colors.blueGrey[100],
+        
+        title: const Text('Tela de Cadastro', style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.blue,
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -51,7 +53,20 @@ class _TelaCadastroState extends State<TelaCadastro> {
             key: formKey,
             child: Column(
               children: <Widget>[
-                TextFormField(
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    borderRadius: BorderRadius.circular(10.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.white.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
+                          ),
+                      ]
+                  ),
+                  child: TextFormField(
                   controller: nomeController,
                   decoration: InputDecoration(
                     labelText: 'Nome',
@@ -65,9 +80,26 @@ class _TelaCadastroState extends State<TelaCadastro> {
                     }
                     return null;
                   },
+                  ),
+                  
                 ),
+
                 const SizedBox(height: 10),
-                TextFormField(
+
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    borderRadius: BorderRadius.circular(10.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.white.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
+                          ),
+                      ]
+                  ),
+                child: TextFormField(
                   controller: idadeController,
                   decoration: InputDecoration(
                     labelText: 'Idade',
@@ -85,8 +117,23 @@ class _TelaCadastroState extends State<TelaCadastro> {
                     return null;
                   },
                 ),
+                ),
                 const SizedBox(height: 10),
-                TextFormField(
+                
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    borderRadius: BorderRadius.circular(10.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.white.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
+                          ),
+                      ]
+                  ),
+                child: TextFormField(
                   controller: sexoController,
                   decoration: InputDecoration(
                     labelText: 'Sexo',
@@ -101,8 +148,23 @@ class _TelaCadastroState extends State<TelaCadastro> {
                     return null;
                   },
                 ),
+                ),
                 const SizedBox(height: 10),
-                TextFormField(
+
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    borderRadius: BorderRadius.circular(10.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.white.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
+                          ),
+                      ]
+                  ),
+                child: TextFormField(
                   controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'E-Mail',
@@ -120,8 +182,22 @@ class _TelaCadastroState extends State<TelaCadastro> {
                     return null;
                   },
                 ),
+                ),
                 const SizedBox(height: 10),
-                TextFormField(
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    borderRadius: BorderRadius.circular(10.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.white.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
+                          ),
+                      ]
+                  ),
+                child: TextFormField(
                   controller: passwordController,
                   decoration: InputDecoration(
                     labelText: 'Senha',
@@ -139,10 +215,18 @@ class _TelaCadastroState extends State<TelaCadastro> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 20),
+                )
+,                const SizedBox(height: 20),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(500, 50),
+                    backgroundColor: Colors.blue,
+                    shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8)), // Define o borderRadius como zero
+                    ),
+                  ),
                   onPressed: register,
-                  child: const Text('Cadastrar'),
+                  child: const Text('Cadastrar', style: TextStyle(color: Colors.white),),
                 ),
               ],
             ),

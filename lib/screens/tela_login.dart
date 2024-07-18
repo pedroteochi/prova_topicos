@@ -146,7 +146,6 @@ class LoginScreenState extends State<TelaLogin> {
                       children: <Widget>[
                         ElevatedButton(
                           onPressed: login,
-                          
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(500, 50),
                             backgroundColor: Colors.blue,
