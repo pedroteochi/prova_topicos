@@ -25,7 +25,7 @@ class LoginScreenState extends State<TelaLogin> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => TelaHome(nome: user['nome'] ),
+            builder: (context) => TelaHome(nome: user['nome'], idade: user['idade'] ),
           ),
         );
       } else {

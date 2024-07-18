@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: const TelaLogin(),
       routes: {
-        '/home': (context) => TelaHome(nome: 'Usuário'),
+        '/home': (context) => TelaLogin(),
         '/calculadora': (context) => CalculatorScreen(),
       },
     );

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class TelaHome extends StatelessWidget{
   final String nome;
+  final int idade;
 
-  const TelaHome({super.key, required this.nome});
+  const TelaHome({super.key, required this.nome, required this.idade});
 
   void logout(BuildContext context){
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -22,11 +23,12 @@ class TelaHome extends StatelessWidget{
           ),
         ],
       ),
+      
       body: Stack(
         children: [
           Align(
             alignment: const Alignment(0.0, -0.6),
-            child: Text('Seja Bem-Vindo, \n $nome!',
+            child: Text('Seja Bem-Vindo, \n $nome $idade!',
             style: TextStyle(
               fontSize: 30,
               color: const Color.fromARGB(255, 0, 0, 0),
