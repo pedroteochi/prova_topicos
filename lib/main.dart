@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:prova_topicos/screens/tela_cadastro.dart';
+import 'package:prova_topicos/screens/tela_home.dart';
 import 'screens/tela_login.dart';
 import 'screens/tela_home.dart';
 import 'screens/tela_calculadora.dart';
+import 'screens/tela_inicial.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,10 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const TelaLogin(),
+      home: TelaInicial(),
       routes: {
-        '/home': (context) => TelaLogin(),
+        '/home': (context) => TelaHome(nome: '', idade: 0,),
         '/calculadora': (context) => CalculatorScreen(),
+        '/login': (context) => TelaLogin(),
+        '/cadastro': (context) => TelaCadastro(),
       },
     );
   }
