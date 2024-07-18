@@ -22,11 +22,11 @@ class TelaHome extends StatelessWidget{
           ),
         ],
       ),
-      body: Stack( //Empilhar varios widgets
+      body: Stack(
         children: [
           Align(
             alignment: const Alignment(0.0, -0.6),
-            child: Text('Seja Bem-Vindo! \n $nome',
+            child: Text('Seja Bem-Vindo, \n $nome!',
             style: TextStyle(
               fontSize: 30,
               color: const Color.fromARGB(255, 0, 0, 0),
@@ -35,28 +35,33 @@ class TelaHome extends StatelessWidget{
                   color: Colors.black.withOpacity(0.2),
                   offset: const Offset(5, 5),
                   blurRadius: 15,
-                  )
-                ]
-              ),
-            ),
+                ),
+              ],
+            )),
           ),
-           const Center(
+          Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Você está logado',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Color.fromARGB(204, 0, 0, 1),
-                  fontWeight: FontWeight.bold,
+                const Text('Você está logado',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Color.fromARGB(204, 0, 0, 1),
+                    fontWeight: FontWeight.bold,
                   ),
-                )
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/calculadora'); // Navega para a tela calculadora
+                  },
+                  child: const Text('Ir para Calculadora'),
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
-
