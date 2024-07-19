@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class TelaIMC extends StatefulWidget {
+  final Color corBase;
+
+  const TelaIMC({required this.corBase});
+
   @override
-  _TelaIMCState createState() => _TelaIMCState();
+  TelaIMCState createState() => TelaIMCState();
 }
 
-class _TelaIMCState extends State<TelaIMC> {
+class TelaIMCState extends State<TelaIMC> {
   final TextEditingController pesoController = TextEditingController();
   final TextEditingController alturaController = TextEditingController();
   double? imc;
@@ -60,7 +64,11 @@ class _TelaIMCState extends State<TelaIMC> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calculadora IMC', style: TextStyle(fontSize: 20)),
+        iconTheme: const IconThemeData(
+          color: Colors.white, 
+        ),
+        backgroundColor: widget.corBase,
+        title: const Text('Calculadora IMC', style: TextStyle(fontSize: 20, color: Colors.white)),
         centerTitle: true,
       ),
       body: Padding(
@@ -70,50 +78,57 @@ class _TelaIMCState extends State<TelaIMC> {
           children: <Widget>[
             TextField(
               controller: pesoController,
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
               inputFormatters: <TextInputFormatter>[
                 FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,1}')),
               ],
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Digite seu peso (kg)',
                 hintText: 'Exemplo: 85.0kg',
               ),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             TextField(
               controller: alturaController,
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              keyboardType: const TextInputType.numberWithOptions(decimal: true),
               inputFormatters: <TextInputFormatter>[
                 FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
               ],
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Digite sua altura (m)',
                 hintText: 'Exemplo: 1.75m',
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
+               mainAxisAlignment:MainAxisAlignment.center,
               children: [
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: widget.corBase,
+                  ),
                   onPressed: verificaImc,
-                  child: Text('Calcular'),
+                  child: const Text('=', style: TextStyle(color: Colors.white)),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 ElevatedButton(
+                   style: ElevatedButton.styleFrom(
+                    backgroundColor: widget.corBase,
+                  ),
                   onPressed: limparCampos,
-                  child: Text('Limpar'),
+                  child: const Text('C', style: TextStyle(color: Colors.white),),
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             if (imc != null && mensagem != null)
               Column(
                 children: <Widget>[
                   Text(
                     'IMC: ${imc!.toStringAsFixed(2)}\nEstado de ${mensagem}',
-                    style: TextStyle(fontSize: 24),
+                    style: const TextStyle(fontSize: 24),
                   ),
                   Container(
                     width: 20,

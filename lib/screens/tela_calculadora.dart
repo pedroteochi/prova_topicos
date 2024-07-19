@@ -1,44 +1,54 @@
 import 'package:flutter/material.dart';
 
-class CalculatorScreen extends StatefulWidget {
+class Calculadora extends StatefulWidget {
+  final Color corBase;
+
+  const Calculadora({required this.corBase});
+
   @override
-  _CalculatorScreenState createState() => _CalculatorScreenState();
+  CalculadoraScreen createState() => CalculadoraScreen();
 }
 
-class _CalculatorScreenState extends State<CalculatorScreen> {
+
+class CalculadoraScreen extends State<Calculadora> {
   final TextEditingController _controller1 = TextEditingController();
   final TextEditingController _controller2 = TextEditingController();
-  String _result = '';
+  String resultado = '';
 
-  void _calculate(String operation) {
+  void Calcular(String operation) {
     setState(() {
       final num1 = double.tryParse(_controller1.text);
       final num2 = double.tryParse(_controller2.text);
 
       if (num1 == null || num2 == null) {
-        _result = 'Please enter valid numbers';
+        resultado = 'Insira números válidos';
         return;
       }
 
       switch (operation) {
+        case 'C':
+          _controller1.clear();
+          _controller2.clear();
+          resultado = '';
+          break;
         case '+':
-          _result = (num1 + num2).toString();
+          resultado = (num1 + num2).toString();
           break;
         case '-':
-          _result = (num1 - num2).toString();
+          resultado = (num1 - num2).toString();
           break;
         case '*':
-          _result = (num1 * num2).toString();
+          resultado = (num1 * num2).toString();
           break;
         case '/':
           if (num2 == 0) {
-            _result = 'Cannot divide by zero';
+            resultado = 'Não é possivel dividir por zero';
           } else {
-            _result = (num1 / num2).toString();
+            resultado = (num1 / num2).toString();
           }
           break;
         default:
-          _result = 'Unknown operation';
+          resultado = 'Operação inválida';
       }
     });
   }
@@ -47,53 +57,100 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calculator'),
+         iconTheme: const IconThemeData(
+          color: Colors.white, 
+        ),
+        backgroundColor: widget.corBase,
+        title: const Text('Calculadora', style: TextStyle(color: Colors.white),),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
+            TextFormField(
               controller: _controller1,
-              decoration: InputDecoration(labelText: 'Enter first number'),
+              decoration: const InputDecoration(
+                labelText: 'Primeiro Número',
+                border: OutlineInputBorder(),
+                ),
               keyboardType: TextInputType.number,
             ),
-            TextField(
+            const SizedBox(height: 15),
+            TextFormField(
               controller: _controller2,
-              decoration: InputDecoration(labelText: 'Enter second number'),
+              decoration: const InputDecoration(labelText: 'Segundo Número',  
+              border: OutlineInputBorder(),
+              ),
+              
               keyboardType: TextInputType.number,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ElevatedButton(
-                  onPressed: () => _calculate('+'),
-                  child: Text('+'),
+                SizedBox(
+                  width: 60,
+                child: ElevatedButton(
+                  onPressed: () => Calcular('+'),
+                  style: ElevatedButton.styleFrom(backgroundColor: widget.corBase),
+                  child: const Text('+',style: TextStyle(color: Colors.white, fontSize: 22)),
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: () => _calculate('-'),
-                  child: Text('-'),
+                SizedBox(
+                  width: 60,
+                child: ElevatedButton(
+                  onPressed: () => Calcular('-'),
+                  style: ElevatedButton.styleFrom(backgroundColor: widget.corBase),
+                  child: const Text('-',style: TextStyle(color: Colors.white, fontSize: 22)),
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: () => _calculate('*'),
-                  child: Text('*'),
+                
+                SizedBox(
+                  width: 60,
+                child:ElevatedButton(
+                  onPressed: () => Calcular('*'),
+                  style: ElevatedButton.styleFrom(backgroundColor: widget.corBase),
+                  child: const Text('*',
+                      style: TextStyle(color: Colors.white,fontSize: 22),),
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: () => _calculate('/'),
-                  child: Text('/'),
+
+                SizedBox(
+                  width: 60,
+                child: ElevatedButton(
+                  onPressed: () => Calcular('/'),
+                  style: ElevatedButton.styleFrom(backgroundColor: widget.corBase),
+                  child: const Text('/', style: TextStyle(color: Colors.white, fontSize: 22),),
+                  ),
+                ),
+
+                SizedBox(
+                  width: 60,
+                child: ElevatedButton(
+                  onPressed: () => Calcular('C'),
+                  style: ElevatedButton.styleFrom(backgroundColor: widget.corBase),
+                  child: const Text('C', style: TextStyle(color: Colors.white, fontSize: 20),),
+                ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            Text(
-              'Result: $_result',
-              style: TextStyle(fontSize: 20),
-            ),
+            const SizedBox(height: 20),
+             if (resultado != '')
+              Column(
+                children: <Widget>[
+                  Text(
+                    'Resultado: ${resultado}',
+                    style: const TextStyle(fontSize: 24),
+                  ),
+                  
+                ],
+              ),
           ],
         ),
       ),
     );
   }
 }
+

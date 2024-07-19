@@ -42,9 +42,12 @@ class _TelaCadastroState extends State<TelaCadastro> {
     return Scaffold(
       backgroundColor: Colors.blue[50],
       appBar: AppBar(
-        
+        iconTheme: const IconThemeData(
+          color: Colors.white, 
+        ),
         title: const Text('Tela de Cadastro', style: TextStyle(color: Colors.white),),
-        backgroundColor: Colors.blue,
+        centerTitle: true,
+        backgroundColor: Colors.blueGrey,
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -53,6 +56,17 @@ class _TelaCadastroState extends State<TelaCadastro> {
             key: formKey,
             child: Column(
               children: <Widget>[
+                Container(
+                      child: const Text('Cadastre-se!', 
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 54, 54, 54),
+                        ),
+                      ),
+                    ),
+                  const SizedBox(height: 10),
+
                 Container(
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 255, 255, 255),
@@ -220,7 +234,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(500, 50),
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Colors.blueGrey,
                     shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8)), // Define o borderRadius como zero
                     ),

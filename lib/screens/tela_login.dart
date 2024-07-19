@@ -62,11 +62,14 @@ class LoginScreenState extends State<TelaLogin> {
     return Scaffold(
       backgroundColor: Colors.blue[50],
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.white, 
+        ),
         title: const Text(
           'Tela de Login',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: const Color.fromARGB(255, 0, 161, 230),
+        backgroundColor: Colors.blueGrey,
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -78,6 +81,16 @@ class LoginScreenState extends State<TelaLogin> {
                 key: formKey,
                 child: Column(
                   children: <Widget>[
+                    Container(
+                      child: const Text('Bem Vindo!', 
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 54, 54, 54),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
                     Container(
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 255, 255, 255),
@@ -152,7 +165,7 @@ class LoginScreenState extends State<TelaLogin> {
                           onPressed: login,
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(500, 50),
-                            backgroundColor: Colors.blue,
+                            backgroundColor: Colors.blueGrey,
                             shape: const RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(8)),
@@ -170,7 +183,7 @@ class LoginScreenState extends State<TelaLogin> {
                           child: const Text(
                             'Não Tem Uma Conta? Cadastre-se',
                             style: TextStyle(
-                              color: Colors.blue,
+                              color: Color.fromARGB(255, 64, 80, 88),
                               fontSize: 13,
                             ),
                           ),
@@ -182,8 +195,11 @@ class LoginScreenState extends State<TelaLogin> {
               ),
               const SizedBox(height: 40),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueGrey
+                ),
                 onPressed: PrintAllUser,
-                child: const Text('Print All Users'),
+                child: const Text('Print All Users', style: TextStyle(color: Colors.white)),
               ),
             ],
           ),

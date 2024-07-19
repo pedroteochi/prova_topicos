@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: TelaInicial(),
       routes: {
-        '/calculadora': (context) => CalculatorScreen(),
+        '/calculadora': (context) => const Calculadora(corBase: Colors.white,),
         '/login': (context) => const TelaLogin(),
         '/cadastro': (context) => const TelaCadastro(),
-        '/imc': (context) => TelaIMC(), 
+        '/imc': (context) => const TelaIMC(corBase: Colors.white,), 
       },
       // onGenerateRoute: (settings) {
       //   if (settings.name == '/home') {

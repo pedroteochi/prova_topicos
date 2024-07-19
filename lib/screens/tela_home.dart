@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:prova_topicos/screens/tela_calculadora.dart';
+import 'package:prova_topicos/screens/tela_imc.dart';
 
 class TelaHome extends StatelessWidget {
   final String nome;
   final int idade;
 
   const TelaHome({super.key, required this.nome, required this.idade});
+  
+  Color get corBase => CorFundoIdade();
 
   void logout(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
 
   Color CorFundoIdade() {
+   
     if (idade < 10) {
-      return const Color.fromARGB(255, 255, 125, 116);
+      return const Color .fromARGB(255, 255, 125, 116);
     } else if (idade >= 10 && idade < 20) {
       return const Color.fromARGB(255, 249, 179, 74);
     } else if (idade >= 20 && idade < 30) {
@@ -33,7 +38,7 @@ class TelaHome extends StatelessWidget {
           'Home',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: CorFundoIdade(), // Define a cor do fundo
+        backgroundColor: CorFundoIdade(), 
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
@@ -65,7 +70,7 @@ class TelaHome extends StatelessWidget {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/calculadora');
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Calculadora(corBase: CorFundoIdade())));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: CorFundoIdade(),
@@ -78,7 +83,7 @@ class TelaHome extends StatelessWidget {
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/imc');
+                   Navigator.push(context, MaterialPageRoute(builder: (context) => TelaIMC(corBase: CorFundoIdade())));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: CorFundoIdade(),
