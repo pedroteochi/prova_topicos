@@ -1,30 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class TelaIMC extends StatefulWidget {
   @override
-  Widget build(BuildContext context) { 
-    return MaterialApp(
-      title: 'Calculadora IMC',
-      theme: ThemeData(
-        primaryColor: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
-  }
+  _TelaIMCState createState() => _TelaIMCState();
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  MyHomePageState createState() => MyHomePageState();
-}
-
-class MyHomePageState extends State<MyHomePage> {
-
+class _TelaIMCState extends State<TelaIMC> {
   final TextEditingController pesoController = TextEditingController();
   final TextEditingController alturaController = TextEditingController();
   double? imc;
@@ -33,7 +15,7 @@ class MyHomePageState extends State<MyHomePage> {
 
   void verificaImc() {
     if (pesoController.text.isEmpty || alturaController.text.isEmpty) {
-      return; 
+      return;
     }
 
     final double peso = double.parse(pesoController.text);
@@ -47,30 +29,30 @@ class MyHomePageState extends State<MyHomePage> {
         corBolinha = Colors.green;
       } else if (imc! >= 18 && imc! < 24.9) {
         mensagem = 'Normal';
-        corBolinha = Colors.green; 
+        corBolinha = Colors.green;
       } else if (imc! >= 25 && imc! < 29.9) {
         mensagem = 'Sobrepeso';
-        corBolinha = Colors.yellow; 
+        corBolinha = Colors.yellow;
       } else if (imc! >= 30 && imc! < 34.9) {
         mensagem = 'Obesidade Grau I';
-        corBolinha = Colors.orange; 
+        corBolinha = Colors.orange;
       } else if (imc! >= 35 && imc! < 39.9) {
         mensagem = 'Obesidade Grau II';
-        corBolinha = Colors.red; 
+        corBolinha = Colors.red;
       } else {
         mensagem = 'Obesidade Grau III';
-        corBolinha = Colors.red; 
+        corBolinha = Colors.red;
       }
     });
   }
 
   void limparCampos() {
     setState(() {
-      pesoController.clear(); 
-      alturaController.clear(); 
-      imc = null; 
-      mensagem = null; 
-      corBolinha = null; 
+      pesoController.clear();
+      alturaController.clear();
+      imc = null;
+      mensagem = null;
+      corBolinha = null;
     });
   }
 
@@ -78,23 +60,19 @@ class MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calculadora IMC',
-        style: TextStyle(fontSize: 20)
-        ), 
+        title: Text('Calculadora IMC', style: TextStyle(fontSize: 20)),
         centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column( 
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TextField(
               controller: pesoController,
               keyboardType: TextInputType.numberWithOptions(decimal: true),
               inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(
-                  RegExp(r'^\d+\.?\d{0,1}')
-                ),
+                FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,1}')),
               ],
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -107,9 +85,7 @@ class MyHomePageState extends State<MyHomePage> {
               controller: alturaController,
               keyboardType: TextInputType.numberWithOptions(decimal: true),
               inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(
-                  RegExp(r'^\d+\.?\d{0,2}')
-                ),
+                FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
               ],
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -118,29 +94,26 @@ class MyHomePageState extends State<MyHomePage> {
               ),
             ),
             SizedBox(height: 20),
-            Row(children: [
-               ElevatedButton(
-              onPressed: verificaImc, 
-              child: Text('Calcular'),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: verificaImc,
+                  child: Text('Calcular'),
+                ),
+                SizedBox(width: 20),
+                ElevatedButton(
+                  onPressed: limparCampos,
+                  child: Text('Limpar'),
+                ),
+              ],
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: limparCampos, 
-              child: Text('Limpar'),
-              style: ElevatedButton.styleFrom(
-              ),
-            ),
-            ],),
             SizedBox(height: 20),
             if (imc != null && mensagem != null)
               Column(
                 children: <Widget>[
-                  SizedBox(width: 10),
                   Text(
                     'IMC: ${imc!.toStringAsFixed(2)}\nEstado de ${mensagem}',
-                    style: TextStyle(
-                      fontSize: 24,
-                    ),
+                    style: TextStyle(fontSize: 24),
                   ),
                   Container(
                     width: 20,
