@@ -11,7 +11,8 @@ class TelaInicialState extends State<TelaInicial> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Prova Tópicos'),
+        title: const Text('Prova Tópicos', style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.blueGrey,
       ),
       body: Center(
         child: Padding(
@@ -20,7 +21,7 @@ class TelaInicialState extends State<TelaInicial> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Prova Tópicos especiais em Informática: Pedro e Richard',
+                'Prova Tópicos Especiais em Informática: Pedro e Richard',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 20),
               ),

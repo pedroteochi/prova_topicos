@@ -28,7 +28,6 @@ class LoginScreenState extends State<TelaLogin> {
             builder: (context) => TelaHome(
               nome: user['nome'],
               idade: user['idade'],
-              sexo: user['sexo'] ?? 'Desconhecido', // Passa o sexo com um valor padrão se for nulo
             ),
           ),
         );
@@ -54,7 +53,7 @@ class LoginScreenState extends State<TelaLogin> {
   void navigateToCadastro() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => TelaCadastro()),
+      MaterialPageRoute(builder: (context) => const TelaCadastro()),
     );
   }
 
@@ -63,7 +62,8 @@ class LoginScreenState extends State<TelaLogin> {
     return Scaffold(
       backgroundColor: Colors.blue[50],
       appBar: AppBar(
-        title: const Text('Tela de Login',
+        title: const Text(
+          'Tela de Login',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 0, 161, 230),
@@ -80,7 +80,7 @@ class LoginScreenState extends State<TelaLogin> {
                   children: <Widget>[
                     Container(
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color: const Color.fromARGB(255, 255, 255, 255),
                         borderRadius: BorderRadius.circular(10.0),
                         boxShadow: [
                           BoxShadow(
@@ -103,7 +103,7 @@ class LoginScreenState extends State<TelaLogin> {
                           if (value!.isEmpty) {
                             return 'Por favor, digite o seu e-mail!';
                           } else if (!RegExp(
-                              r'^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}')
+                                  r'^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}')
                               .hasMatch(value)) {
                             return 'Digite um endereço de e-mail válido';
                           }
@@ -154,17 +154,21 @@ class LoginScreenState extends State<TelaLogin> {
                             minimumSize: const Size(500, 50),
                             backgroundColor: Colors.blue,
                             shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(8)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
                             ),
                           ),
-                          child: const Text('Entrar',
+                          child: const Text(
+                            'Entrar',
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
                         const SizedBox(height: 10),
                         GestureDetector(
-                          onTap: navigateToCadastro, // Navega para a tela de cadastro
-                          child: const Text('Não Tem Uma Conta? Cadastre-se',
+                          onTap:
+                              navigateToCadastro, // Navega para a tela de cadastro
+                          child: const Text(
+                            'Não Tem Uma Conta? Cadastre-se',
                             style: TextStyle(
                               color: Colors.blue,
                               fontSize: 13,
